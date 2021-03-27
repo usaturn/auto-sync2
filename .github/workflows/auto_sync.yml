@@ -20,7 +20,7 @@ jobs:
           git fetch upstream
 
           git checkout master
-          git rebase upstream/master
+          git merge --no-edit upstream/master
           git push origin master
         env:
           REPO_FORK: https://gitlab.com/usaturn/test-auto-sync
