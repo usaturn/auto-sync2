@@ -1,0 +1,27 @@
+name: Merge upstream branches
+
+on:
+  schedule:
+    - cron:  '10 */1 * * *'
+
+jobs:
+  rebase:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - name: Merge upstream
+        run: |
+          git config --global user.name ${NAME}
+          git config --global user.email ${EMAIL}
+          git config --global pull.rebase merges
+
+          git pull --unshallow
+          git remote add upstream ${REPO_FORK}
+          git fetch upstream
+
+          # Merge changes
+          git checkout master
+          git rebase upstream/master
+          git push origin master
+        env:
+          REPO_FORK: https://gitlab.com/usaturn/test-auto-sync
