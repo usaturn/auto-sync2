@@ -2,7 +2,7 @@ name: Merge upstream branches
 
 on:
   schedule:
-    - cron:  '*/5 * * * *'
+    - cron: '*/5 * * * *'
 
 jobs:
   rebase:
@@ -19,7 +19,6 @@ jobs:
           git remote add upstream ${REPO_FORK}
           git fetch upstream
 
-          # Merge changes
           git checkout master
           git rebase upstream/master
           git push origin master
