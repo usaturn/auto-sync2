@@ -2,7 +2,7 @@ name: Merge upstream branches
 
 on:
   schedule:
-    - cron:  '35 */1 * * *'
+    - cron:  '*/5 * * * *'
 
 jobs:
   rebase:
@@ -25,3 +25,5 @@ jobs:
           git push origin master
         env:
           REPO_FORK: https://gitlab.com/usaturn/test-auto-sync
+          NAME: sample name
+          EMAIL: sample@sample.com
